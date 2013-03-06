@@ -1,4 +1,6 @@
 import inspect
+import sys
+import traceback
 
 from pymongo import Connection
 from pymongo.errors import InvalidOperation
@@ -37,6 +39,40 @@ class Tree:
     def critical(self, message, data=None):
         return self.log(LogLevel.CRITICAL, message, None, data)
 
+    def exception(self, message=None, exception=None, parent=None):
+        etype, value, tb = sys.exc_info()
+        if exception == None:
+            exception = value
+        if value == None:
+            if exception == None:
+                if message == None:
+                    return
+                self.error(message)
+            if message == None:
+                message = "%s: %s" % (exception.__class__.__name__, exception.message)
+            return self.log(LogLevel.EXCEPTION,
+                            message,
+                            parent,
+                            {'exception-type': exception.__class__.__name__,
+                             'exception-message': exception.message})
+        if message == None:
+            message = "%s: %s" % (exception.__class__.__name__, exception.message)
+        stack_list = traceback.format_tb(tb)
+        print "====="
+        print etype
+        print value
+        print tb
+        print message
+        print exception
+        print "====="
+        return self.log(LogLevel.EXCEPTION,
+                        message,
+                        parent,
+                        {'exception-type': exception.__class__.__name__,
+                         'exception-message': "%s" % exception,
+                         'stacktrace': stack_list})
+
+
     def get_top(self, stack):
         for s in stack:
             if s[1].find("treelogger4mongo") < 0:
@@ -61,3 +97,7 @@ def error(message, data=None):
 def critical(message, data=None):
     global TreeLogger
     return TreeLogger.critical(message, data)
+
+def exception(message=None, exception=None):
+    global TreeLogger
+    return TreeLogger.exception(message, exception)
