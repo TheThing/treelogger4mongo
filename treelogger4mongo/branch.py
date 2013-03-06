@@ -55,7 +55,7 @@ class Branch:
             'thread_ident': threading.current_thread().ident,
             'user': getpass.getuser(),
             'level': self.lvl,
-            'level-text': LogLevel.get_friendly_name(self.lvl)
+            'level-text': LogLevel.get_friendly_name(self.lvl),
             'parent': self.parent,
             'call_file': self.caller[1],
             'call_function': self.caller[3],
