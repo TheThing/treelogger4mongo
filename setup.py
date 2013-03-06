@@ -10,8 +10,9 @@ except ImportError:
 setup(
     name='treelogger4mongo',
     version='0.1.0',
-    description='A logger that logs in a tree structure and saves in mongo',
+    description='A logger that logs in a tree structure form in mongo',
     author='Jonatan Nilsson',
+    license='WTFPL-2',
     author_email='jonatan@nilsson.is',
     url='https://github.com/TheThing/treelogger4mongo',
     long_description=open('readme.md', 'r').read(),

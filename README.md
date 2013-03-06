@@ -24,7 +24,7 @@ Lets imagine we have a process that has to loop through all your user database. 
 
 What we get from this is a root log entry with the message "About to process ... users.". However, this is where treelogger comes strong in, each log message after that is applied like a branch to that root log entry.
 
-A sample output would be a log that looks something like this:
+A sample output would be a log structure in mongo that looks something like this:
 
     About to process 2 users
     ├───Processing John Doe {username: johndoe, email: }
