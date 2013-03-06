@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='treelogger4mongo',
-    version='0.0.1',
+    version='0.1.0',
     description='A logger that logs in a tree structure and saves in mongo',
     author='Jonatan Nilsson',
     author_email='jonatan@nilsson.is',
