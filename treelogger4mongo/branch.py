@@ -10,6 +10,7 @@ class LogLevel:
     CRITICAL = 4
     EXCEPTION = 5
 
+    @staticmethod
     def get_friendly_name(lvl):
         for p in dir(LogLevel):
             if not p.startswith("_"):
