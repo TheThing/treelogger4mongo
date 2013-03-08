@@ -1,6 +1,7 @@
 import datetime
 import getpass
 import threading
+import socket
 
 class LogLevel:
     DEBUG = 0
@@ -52,6 +53,7 @@ class Branch:
 
     def to_dict(self):
         return {
+            'host': socket.gethostname(),
             'time': datetime.datetime.now(),
             'thread_ident': threading.current_thread().ident,
             'user': getpass.getuser(),
