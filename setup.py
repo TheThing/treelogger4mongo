@@ -15,7 +15,7 @@ setup(
     license='WTFPL-2',
     author_email='jonatan@nilsson.is',
     url='https://github.com/TheThing/treelogger4mongo',
-    long_description=open('readme.md', 'r').read(),
+    long_description=open('README.md', 'r').read(),
     packages=[
         'treelogger4mongo',
     ],
