@@ -78,6 +78,19 @@ class Tree:
             if s[1].find("treelogger4mongo") < 0:
                 return s
 
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        del state['conn']
+        del state['db']
+        del state['collection']
+        return state
+
+    def __setstate__(self, dict):
+        self.__dict__ = dict
+        self.conn = Connection(dict['host'], dict['port'])
+        self.db = self.conn[dict['dbname']]
+        self.collection = self.db[dict['colname']]
+
 def debug(message, data=None):
     global TreeLogger
     return TreeLogger.debug(message, data)

@@ -21,7 +21,7 @@ class Branch:
     def __init__(self, tree, caller, lvl, message, parent=None, data=None):
         self._id = None
         self.tree = tree
-        self.caller = caller
+        self.caller = (caller[1], caller[3])
         self.lvl = lvl
         self.message = message
         self.data = data
@@ -58,8 +58,8 @@ class Branch:
             'level': self.lvl,
             'level-text': LogLevel.get_friendly_name(self.lvl),
             'parent': self.parent,
-            'call_file': self.caller[1],
-            'call_function': self.caller[3],
+            'call_file': self.caller[0],
+            'call_function': self.caller[1],
             'message': self.message,
             'data': self.data,
         }
